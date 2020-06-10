@@ -1,0 +1,19 @@
+SELECT nome,dataNascimento from `cliente`WHERE nome LIKE 'c%'
+SELECT nome,email,dataNascimento fromm cliente where month(dataNascimento)=08;
+SELECT nome,email,dataNascimento fromm cliente where year(dataNascimento)=08;
+SELECT * FROM `cliente` order by turma desc;
+SELECT titulo ,autor,genero FROM`livro` WHERE genero='terror'
+SELECT count(*) from livro
+SELECT titulo ,autor,genero FROM`livro` WHERE autor='stephen king'
+SELECT codEmprestimo FROM `emprestimo_devolucao` WHERE month(data_emprestimo)=1
+SELECT data_emprestimo,data_devolucao,ra FROM emprestimo_devolucao where data_emprestimo BETWEEN '2019-01-01' and '2020-01-01'
+SELECT nome,codfuncionario FROM `bibliotecario` WHERE cidade='sao paulo'
+SELECT * FROM `bibliotecario` order by nome desc
+SELECT titulo ,autor,genero FROM`livro` WHERE genero='aventura'
+SELECT titulo,genero from livro where editora= 'viking press'
+SELECT titulo,genero FROM `livro` WHERE genero='aventura' and autor like 'c%'
+SELECT AVG(paginas) FROM livro;
+SELECT sum(paginas) FROM livro
+SELECT autor,titulo,genero,qntdexemplares FROM `livro` WHERE qntdexemplares BETWEEN 4 and 6
+
+

@@ -1,0 +1,170 @@
+
+create database biblioteca;
+
+use biblioteca;
+
+CREATE TABLE cliente (
+ telefone varchar(255),
+ nome varchar(255) not null,
+ turma varchar(255) not null,
+ email varchar(255) unique not null,
+ dataNascimento varchar(255),
+ ra int PRIMARY KEY auto_increment
+);
+CREATE TABLE livro (
+ codlivro int PRIMARY KEY auto_increment,
+ titulo varchar(255),
+ autor varchar(255),
+ genero varchar(255),
+ editora varchar(255)
+);
+
+CREATE TABLE bibliotecario (
+ codfuncionario int PRIMARY KEY auto_increment,
+ email varchar(255) unique not null,
+ nome varchar(255) not null,
+ cpf varchar(255) unique not null,
+ telefone varchar(255),
+ dataNascimento varchar(255),
+ rg varchar(255),
+ logadouro varchar(255),
+ num varchar(255),
+ complemento varchar(255),
+ bairro varchar(255),
+ cidade varchar(255) not null,
+ uf varchar(255),
+ cep varchar(255)
+);
+
+CREATE TABLE emprestimo_devolucao (
+ codEmprestimo int PRIMARY KEY auto-increment,
+ data_emprestimo date,
+ data_devolucao date,
+ ra int,
+ codlivro int,
+ codfuncionario int,
+ FOREIGN KEY(ra) REFERENCES cliente (ra),
+ FOREIGN KEY(codlivro) REFERENCES livro (codlivro),
+ FOREIGN KEY(codfuncionario) REFERENCES bibliotecario (codfuncionario)
+
+);
+
+Insert into cliente (nome,turma,telefone,email,dataNascimento) VALUES
+('José Pereira','1A','4151-5332','jose90@gmail.com','2001-08-21'),
+('Maria Eduarda','2D','4131-3372','maria3@gmail.com','2003-02-01'),
+('João De Souza','3B','4181-7332','joao34@gmail.com','2003-03-09'),
+('Cris Santos','2B','4121-1332','cris29@gmail.com','2005-01-27'),
+('Julia Cruz','2B','1121-3332','julia@gmail.com','2003-08-30'),
+('Sara Da Silva','1C','3221-3332','sara92@gmail.com','2001-05-08'),
+('Lucio Miranda','2A','4121-3032','lucio01@gmail.com','2000-06-07'),
+('Patrick Vasconcelos','2D','4121-6332','patrick23@gmail.com','2004-03-29'),
+('Lucas Peres','3A','4121-3392','lucas28@gmail.com','2001-09-23'),
+('Alisson luz','2A','2234-1223','alisson132@gmail.com','2003-09-23'),
+('Gabriel Oliveira','3B','4131-3332','gabriel453@gmail.com','2000-07-01');
+
+Insert into bibliotecario(email,nome,cpf,telefone,dataNascimento,rg,logadouro,num, complemento,bairro,cidade,uf,cep) VALUES
+('luiz27@gmail.com','Luiz','22.442.321-23','4390-1234','1995-03-21','NULL','NULL','NULL','NULL','NULL','São paulo','NULL','NULL'),
+('lucas17@gmail.com','Lucas','24.402.341-21','4350-1234','1990-03-07','NULL','NULL','NULL','NULL','NULL','São paulo','NULL','NULL'),
+('leonardo43@gmail.com','Leonardo','11.342.301-13','4570-1234','1985-11-11','NULL','NULL','NULL','NULL','NULL','São Bernardo','NULL','NULL'),
+('emilio27@gmail.com','emilio','22.642.321-90','4670-1234','1995-02-21','NULL','NULL','NULL','NULL','NULL','São paulo','NULL','NULL'),
+('everaldo43@gmail.com','everaldo','26.412.321-23','4890-1234','1989-03-28','NULL','NULL','NULL','NULL','NULL','São paulo','NULL','NULL');
+
+Insert into livro(titulo,autor,genero,editora) VALUES
+('alice no pais das maravilhas','lewis carrol','aventura','macmilan'),
+('it a coisa','stephen king','terror','viking press'),
+('universo em uma casca de noz','stephen hawking','teoria','bantam spectra'),
+('assasinato no expresso do oriente','agatha criste','misterio','colins crimme club'),
+('o dia do chacal','frederick forswicth','ação','super selers'),
+('as viagens de guliver','jonatha swifth','aventura','benjamin motte'),
+('os tres mosqueteiros','alexandre dumas','aventura','zahar'),
+('dom quixote','miguel de cervantes','aventura','fransisco de robles'),
+('o caso dos dez negrinhos','agatha criste','misterio','colins crime club'),
+('o iluminado','stephen king','terror','viking press');
+
+Insert into emprestimo_devolucao(data_emprestimo,data_devolucao,ra,codfuncionario,codlivro) VALUES
+('2019-11-09','2020-1-27',1,1,1),
+('2019-11-11','2020-2-26',2,2,3),
+('2019-10-07','2020-1-25',3,4,2),
+('2019-02-29','2020-2-19',4,3,5),
+('2019-12-05','2020-1-23',6,5,4),
+('2019-09-19','2020-1-10',5,2,7),
+('2019-01-13','2020-2-19',9,3,6),
+('2019-08-12','2020-1-29',8,5,10),
+('2019-10-06','2020-1-11',10,4,9),
+('2019-01-13','2019-1-17',7,1,8);
+
+CREATE TABLE emperstimo_devolucao (
+ codEmprestimo int PRIMARY KEY,
+ data_emprestimo date,
+ data_devolucao date,
+ ra int,
+ codlivro int,
+ codfuncionario int,
+ FOREIGN KEY(ra) REFERENCES cliente (ra)
+ FOREIGN KEY(codlivro) REFERENCES livro (codlivro)
+ FOREIGN KEY(codfuncionario) REFERENCES bibliotecario (codfuncionario)
+
+);
+
+Insert into cliente (nome,turma,telefone,email,dataNascimento) VALUES
+('José Pereira','1A','4151-5332','jose90@gmail.com','2001-08-21'),
+('Maria Eduarda','2D','4131-3372','maria3@gmail.com','2003-02-01'),
+('João De Souza','3B','4181-7332','joao34@gmail.com','2003-03-09'),
+('Cris Santos','2B','4121-1332','cris29@gmail.com','2005-01-27'),
+('Julia Cruz','2B','1121-3332','julia@gmail.com','2003-08-30'),
+('Sara Da Silva','1C','3221-3332','sara92@gmail.com','2001-05-08'),
+('Lucio Miranda','2A','4121-3032','lucio01@gmail.com','2000-06-07'),
+('Patrick Vasconcelos','2D','4121-6332','patrick23@gmail.com','2004-03-29'),
+('Lucas Peres','3A','4121-3392','lucas28@gmail.com','2001-09-23'),
+('Gabriel Oliveira','3B','4131-3332','gabriel453@gmail.com','2000-07-01');
+
+Insert into bibliotecario(email,nome,cpf,telefone,dataNascimento,rg,logadouro,num, complemento,bairro,cidade,uf,cep) VALUES
+('luiz27@gmail.com','Luiz','22.442.321-23','4390-1234','1995-03-21','NULL','NULL','NULL','São paulo','NULL','NULL'),
+('lucas17@gmail.com','Lucas','24.402.341-21','4350-1234','1990-03-07','NULL','NULL','NULL','São paulo','NULL','NULL'),
+('leonardo43@gmail.com','Leonardo','11.342.301-13','4570-1234','1985-11-11','NULL','NULL','NULL','São Bernardo','NULL','NULL'),
+('emilio27@gmail.com','emilio','22.642.321-90','4670-1234','1995-02-21','NULL','NULL','NULL','São paulo','NULL','NULL'),
+('everaldo43@gmail.com','everaldo','26.412.321-23','4890-1234','1989-03-28','NULL','NULL','NULL','São paulo','NULL','NULL');
+
+Insert into livro(titulo,autor,genero,editora) VALUES
+('alice no pais das maravilhas','lewis carrol','aventura','macmilan'),
+('it a coisa','stephen king','terror','viking press'),
+('universo em uma casca de noz','stephen hawking','teoria','bantam spectra'),
+('assasinato no expresso do oriente','agatha criste','misterio','colins crimme club'),
+('o dia do chacal','frederick forswicth','ação','super selers'),
+('as viagens de guliver','jonatha swifth','aventura','benjamin motte'),
+('os tres mosqueteiros','alexandre dumas','aventura','zahar'),
+('dom quixote','miguel de cervantes','aventura','fransisco de robles'),
+('o caso dos dez negrinhos','agatha criste','misterio','colins crime club'),
+('o iluminado','stephen king','terror','viking press');
+
+Insert into emprestimo_devolucao(data_emprestimo,data_devolucao,ra,codfuncionario,codlivro) VALUES
+('2019-11-09','2020-1-27','1','1','1'),
+('2019-11-11','2020-2-26','2','2','3'),
+('2019-10-07','2020-1-25','3','4','2'),
+('2019-02-29','2020-2-19','4','3','5'),
+('2019-12-05','2020-1-23','6','5','4'),
+('2019-09-19','2020-1-10','5','2','7'),
+('2019-01-13','2020-2-19','9','3','6'),
+('2019-08-12','2020-1-29','8','5','10'),
+('2019-10-06','2020-1-11','10','4','9'),
+('2019-01-13,'2019-1-17','7','1','8');
+
+
+alter table bibliotecario drop column rua;
+alter table livro ADD COLUMN paginas int;
+alter table livro ADD COLUMN qntdexemplares int;
+update livro set paginas = 100 ,qntdexemplares= 5 WHERE codlivro=1;
+update livro set paginas = 203 ,qntdexemplares= 13 WHERE codlivro=2;
+update livro set paginas = 423 ,qntdexemplares= 6 WHERE codlivro=3;
+update livro set paginas = 1030 ,qntdexemplares= 9 WHERE codlivro=4;
+update livro set paginas = 442 ,qntdexemplares= 7 WHERE codlivro=5;
+update livro set paginas = 1443 ,qntdexemplares= 5 WHERE codlivro=6;
+update livro set paginas = 142 ,qntdexemplares= 2 WHERE codlivro=7;
+update livro set paginas = 153 ,qntdexemplares= 18 WHERE codlivro=8;
+update livro set paginas = 144 ,qntdexemplares= 9 WHERE codlivro=9;
+update livro set paginas = 500 ,qntdexemplares= 12 WHERE codlivro=10;
+
+
+
+
+
